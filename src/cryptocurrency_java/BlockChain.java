@@ -17,7 +17,7 @@ public class BlockChain implements Serializable {
 		this.owner = bcOwner;
 		this.blockChain = new ArrayList<>();
 		this.openTransactions = new ArrayList<>();
-		Block genesisBlock = new Block(0, "", new ArrayList<Transaction>(), 100, LocalDateTime.now());
+		Block genesisBlock = new Block(0, "none", new ArrayList<Transaction>(), 100, LocalDateTime.now());
 		
 		this.blockChain.add(genesisBlock);
 	}
@@ -44,5 +44,12 @@ public class BlockChain implements Serializable {
 
 	public void setOpenTransactions(List<Transaction> openTransactions) {
 		this.openTransactions = openTransactions;
+	}
+	
+	public void printBlockChain() {
+		for (int i = 0; i < this.blockChain.size(); i++) {
+			Block current = this.blockChain.get(i);
+			System.out.println("Block " + current.getIndex() + ": " + current.getPreviousHash() + " " + current.getProof() + " " + current.getTimestamp());
+		}
 	}
 }

@@ -22,10 +22,11 @@ public class Main {
 					break;
 				
 				case "2":
-					System.out.println("2");
+					blockChain.printBlockChain();
 					break;
 				
 				case "q":
+					menuInputScanner.close();
 					System.exit(0);
 					break;
 				
