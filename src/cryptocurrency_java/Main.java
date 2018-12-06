@@ -18,7 +18,7 @@ public class Main {
 			
 			switch (menuInput) {
 				case "1":
-					System.out.println("1");
+					handleAddNewTransaction(blockChain);
 					break;
 				
 				case "2":
@@ -35,6 +35,31 @@ public class Main {
 					break;
 			}
 		}
+	}
+	
+	private static void handleAddNewTransaction(BlockChain blockChain) {
+		Scanner newTransactionInputScanner = new Scanner(System.in);
+		Transaction newTransaction;
+		String sender, recipient;
+		double amount;
+		
+		System.out.println("Enter the sender name: ");
+		sender = newTransactionInputScanner.nextLine();
+		
+		System.out.println("Enter the recipient name: ");
+		recipient = newTransactionInputScanner.nextLine();
+		
+		System.out.println("Enter the amount to be sent: ");
+		amount = newTransactionInputScanner.nextDouble();
+		
+		newTransaction = new Transaction(sender, recipient, amount);
+		
+		if (blockChain.addTransaction(newTransaction)) {
+			System.out.println("Transaction approved!");
+		} else {
+			System.out.println("Transaction not approved!");
+		}
+		
 	}
 
 }

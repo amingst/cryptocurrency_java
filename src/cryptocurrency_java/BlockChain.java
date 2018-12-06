@@ -48,8 +48,20 @@ public class BlockChain implements Serializable {
 	
 	public void printBlockChain() {
 		for (int i = 0; i < this.blockChain.size(); i++) {
-			Block current = this.blockChain.get(i);
-			System.out.println("Block " + current.getIndex() + ": " + current.getPreviousHash() + " " + current.getProof() + " " + current.getTimestamp());
+			Block currentBlock = this.blockChain.get(i);
+			System.out.println("Block " + currentBlock.getIndex() + ": " + currentBlock.getPreviousHash() + " " + currentBlock.getProof() + " " + currentBlock.getTimestamp());
+			
+			for (int j = 0; j < this.openTransactions.size(); j++) {
+				Transaction currentTransaction = this.openTransactions.get(j);
+				System.out.println("Open transaction " + j + ": " + currentTransaction.getSender() + " sent " + currentTransaction.getAmount() + " to " + currentTransaction.getRecipient());
+			}
 		}
+	}
+	
+	public boolean addTransaction(Transaction newTransaction) {
+		this.openTransactions.add(newTransaction);
+		System.out.println("New transaction added!");
+		
+		return true;
 	}
 }
